@@ -7,6 +7,8 @@ function ShareRestaurantScreen() {
     <SafeAreaView style={styles.container}>
       <Text>Share Restaurant Screen</Text>
     </SafeAreaView>
+
+    
   );
 }
 

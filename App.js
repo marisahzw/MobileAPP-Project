@@ -5,8 +5,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MapViewScreen from './components/MapView';
 import SearchScreen from './components/Search';
 import AboutScreen from './components/About';
-import ShareRestaurantScreen from './components/ShareRestaurant';
-import { createStackNavigator } from '@react-navigation/stack';
 import RestaurantDetails from './components/RestaurantDetails';
 import { Ionicons } from '@expo/vector-icons';
 import image0 from './assets/image0.jpg';
@@ -17,16 +15,6 @@ import image4 from './assets/image4.jpg';
 import image5 from './assets/image5.jpg';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
-
-function MyStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Home" }} />
-      <Stack.Screen name="RestaurantDetails" component={RestaurantDetails} />
-    </Stack.Navigator>
-  );
-}
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,6 +37,11 @@ export default function App() {
       title: getRandomRestaurantName(),
       thumbnailUrl: images[index % images.length],
       rating: getRandomRating(),
+       address: '123 Main St',
+        phone: '555-1234',
+        email: 'info@example.com',
+        openHours: '10:00 AM',
+        closeHours: '8:00 PM',
     }));
 
     setData(dummyData);
@@ -97,6 +90,16 @@ export default function App() {
             ),
           }}
         />
+       <Tab.Screen
+        name="DetailsRestaurant"
+        component={RestaurantDetails}
+        options={{
+          title: 'DetailsRestaurant',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="md-restaurant" size={size} color={color} />
+          ),
+        }}
+      />
         <Tab.Screen
           name="About"
           component={AboutScreen}
@@ -107,16 +110,7 @@ export default function App() {
             ),
           }}
         />
-        <Tab.Screen
-          name="ShareRestaurant"
-          component={ShareRestaurantScreen}
-          options={{
-            title: "Share Restaurant",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="md-share" size={size} color={color} />
-            ),
-          }}
-        />
+        
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -144,7 +138,7 @@ function ListItem(props) {
     <TouchableOpacity
       style={styles.item}
       key={item.id}
-      onPress={() => navigation.navigate('RestaurantDetails', { item })}
+      onPress={() => navigation.navigate('DetailsRestaurant', { item })}
     >
       <Image source={item.thumbnailUrl} style={styles.image} />
       <View style={{ flex: 1, marginLeft: 10 }}>
