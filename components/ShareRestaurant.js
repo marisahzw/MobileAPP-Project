@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, SafeAreaView } from 'react-native';
-import styles from './styles'; // Make sure to import styles
+import styles from './styles'; 
 
 function ShareRestaurantScreen() {
   return (

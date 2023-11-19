@@ -3,21 +3,21 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const RestaurantDetails = ({ route, navigation }) => {
-  // Check if route.params and route.params.item are defined
+ 
   if (!route.params || !route.params.item) {
-    // Render an error message with options to go back to home or search
+
     return (
       <View style={styles.container}>
         <Text>Error: Restaurant details not available.</Text>
         <TouchableOpacity
           style={styles.goBackButton}
-          onPress={() => navigation.navigate('Home')} // Navigate to home screen
+          onPress={() => navigation.navigate('Home')} 
         >
           <Text style={styles.goBackButtonText}>Go to Home</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.goBackButton}
-          onPress={() => navigation.navigate('Search')} // Navigate to search screen
+          onPress={() => navigation.navigate('Search')} 
         >
           <Text style={styles.goBackButtonText}>Go to Search</Text>
         </TouchableOpacity>
@@ -25,7 +25,7 @@ const RestaurantDetails = ({ route, navigation }) => {
     );
   }
 
-  // If item is defined, proceed with rendering the component
+  
   const { item } = route.params;
 
   return (
